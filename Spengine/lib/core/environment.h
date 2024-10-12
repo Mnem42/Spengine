@@ -1,5 +1,7 @@
 #pragma once
+#include "math.h"
 #include "events.h"
+#include "specification.h"
 
 namespace spengine {
 	namespace Environments {

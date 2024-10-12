@@ -32,10 +32,10 @@
     <ClInclude Include="lib\core\environment.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="lib\templates\graphics_templates.h">
-      <Filter>Header Files\Templates</Filter>
-    </ClInclude>
     <ClInclude Include="lib\core\math.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\specification.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

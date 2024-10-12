@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "lib/core/environment.h"
-#include "lib/templates/graphics_templates.h"
+
 
 int main()
 {

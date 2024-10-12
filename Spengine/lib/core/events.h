@@ -7,6 +7,7 @@ namespace spengine {
 	namespace events {
 		struct Evt {
 			uint8_t evt_type = NULL;
+			uint8_t listener = NULL;
 			void* data = NULL;
 			void* retdata = NULL;
 			volatile bool return_ready = false;
@@ -17,9 +18,7 @@ namespace spengine {
 		typedef uint8_t(EvtPrecheck)(Evt*);
 
 		struct Evtquene_tracker {
-			EvtQuene* drawer_evts;
-			EvtQuene* audio_evts;
-			EvtQuene* physics_evts;
+			EvtQuene* system_quene;
 			EvtQuene* custom_evts;
 		};
 	}

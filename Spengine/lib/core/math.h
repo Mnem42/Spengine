@@ -8,5 +8,12 @@ namespace spengine {
 				uint16_t y;
 			};
 		}
+		namespace colour {
+			struct RGB24 {
+				uint8_t r;
+				uint8_t g;
+				uint8_t b;
+			};
+		}
 	}
 }
