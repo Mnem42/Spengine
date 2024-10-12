@@ -2,11 +2,14 @@
 //
 
 #include <iostream>
-#include "Environment.h"
+#include "lib/core/environment.h"
+#include "lib/templates/graphics_templates.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+    spengine::Graphics_templates::Event_types::evt_draw_outline_circle;
+    spengine::Graphics_templates::Event_payloads::Tripayload;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

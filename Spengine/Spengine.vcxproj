@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="lib\core\environment.h" />
     <ClInclude Include="lib\core\events.h" />
+    <ClInclude Include="lib\core\math.h" />
     <ClInclude Include="lib\templates\graphics_templates.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
