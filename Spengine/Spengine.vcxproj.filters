@@ -22,6 +22,12 @@
     <Filter Include="Header Files\Templates\WINAPI">
       <UniqueIdentifier>{e73a07e1-b8c1-4333-948e-33e16d205099}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{6c27abcc-8470-4a2d-b33f-385f876362c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\Specification items">
+      <UniqueIdentifier>{bd676cf4-cad6-4461-8667-1539aa1fbe97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spengine.cpp">
@@ -44,5 +50,16 @@
     <ClInclude Include="lib\templates\Windows\winapi_hardware.h">
       <Filter>Header Files\Templates\WINAPI</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\documentation\Event system.md">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="lib\documentation\index.md">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="lib\documentation\Specification items\Capabilites query.md">
+      <Filter>Documentation\Specification items</Filter>
+    </None>
   </ItemGroup>
 </Project>

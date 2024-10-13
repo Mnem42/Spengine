@@ -1,10 +1,11 @@
 #pragma once
+#include <exception>
 #include <Windows.h>
 #include "../../core/events.h"
 #include "../../core/specification.h"
 
 namespace spengine_winapi {
-	bool hardware_query(spengine::specification::CapabilityQueryType query_type,HWND hwnd) {
+	bool capability_query(spengine::specification::CapabilityQueryType query_type,HWND hwnd) {
 		using namespace spengine::specification;
 		using namespace spengine::spec_cababilityreq;
 
@@ -34,4 +35,21 @@ namespace spengine_winapi {
 			return true;
 		}
 	}
+
+	class capability_evthandler{
+	private:
+		HWND hwnd=NULL;
+	public:
+		capability_evthandler(HWND hWnd) {
+			hwnd = hWnd;
+		}
+		bool operator () (spengine::events::Evt* evt){
+			if (hwnd != NULL) {
+				capability_query(static_cast<spengine::specification::CapabilityQueryType>(evt->evt_type), hwnd);
+			}
+			else {
+				// TODO: exceptions
+			}
+		}
+	};
 }
