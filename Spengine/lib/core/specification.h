@@ -3,15 +3,13 @@
 namespace spengine {
 	namespace specification {
 		enum BuiltinHandlerMap {
-			Hardware_query     = 0x01,
-			Capabilities_query = 0x02,
-			Set_active_modules = 0x03,
+			Capabilities_query = 0x01,
+			Set_active_modules = 0x02,
 
-			Drawer_required_A = 0x0A,
-			Drawer_required_B = 0x0B,
-			Drawer_optional_A = 0x0C,
-			Drawer_optional_B = 0x0D,
-			Drawer_optional_C = 0x0E,
+			Drawer_required_A = 0x08,
+			Drawer_required_B = 0x09,
+			Drawer_optional_A = 0x0A,
+			Drawer_optional_B = 0x0B,
 		};
 		enum DrawerEvtTypes {
 			//required set A

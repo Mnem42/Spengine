@@ -6,8 +6,8 @@
 namespace spengine {
 	namespace events {
 		struct Evt {
-			uint8_t evt_type = NULL;
 			uint8_t listener = NULL;
+			uint8_t evt_type = NULL;
 			void* data = NULL;
 			void* retdata = NULL;
 			volatile bool return_ready = false;
