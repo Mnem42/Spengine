@@ -14,8 +14,8 @@ namespace spengine {
 		};
 
 		typedef std::vector<Evt*> EvtQuene;
-		typedef uint8_t(EvtConsumer)(Evt*);
-		typedef uint8_t(EvtPrecheck)(Evt*);
+		typedef bool(EvtConsumer)(Evt*);
+		typedef bool(EvtPrecheck)(Evt*);
 
 		struct Evtquene_tracker {
 			EvtQuene* system_quene;

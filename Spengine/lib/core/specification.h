@@ -2,7 +2,7 @@
 
 namespace spengine {
 	namespace specification {
-		enum BuiltinHandlers {
+		enum BuiltinHandlerMap {
 			Hardware_query     = 0x01,
 			Capabilities_query = 0x02,
 			Set_active_modules = 0x03,
@@ -13,8 +13,7 @@ namespace spengine {
 			Drawer_optional_B = 0x0D,
 			Drawer_optional_C = 0x0E,
 		};
-
-		enum DrawerEvts {
+		enum DrawerEvtTypes {
 			//required set A
 			Draw_bitmap = 0x01,
 			Draw_rect   = 0x02,
@@ -33,6 +32,19 @@ namespace spengine {
 
 			//optional set C
 			Invert_colour_area = 0x0B
+		};
+		enum CapabilityQueryType {
+			DrawDriver_Query,
+			AudioDriver_Query,
+			CPU_Query,
+			API_Query
+		};
+	}
+	namespace general_interface {
+		struct Version {
+			unsigned int major;
+			unsigned int minor;
+			unsigned int buildnum;
 		};
 	}
 	namespace spec_drawer {
@@ -59,6 +71,14 @@ namespace spengine {
 			math::coords::DisplayCoord w;
 			math::coords::DisplayCoord h;
 			math::colour::RGB24 colour;
+		};
+	}
+	namespace spec_cababilityreq {
+		struct CapabilityQueryRet {
+			const char* id;
+			const char* source;
+			bool enabled;
+			general_interface::Version version;
 		};
 	}
 }

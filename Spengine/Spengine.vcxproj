@@ -134,6 +134,7 @@
     <ClInclude Include="lib\core\events.h" />
     <ClInclude Include="lib\core\math.h" />
     <ClInclude Include="lib\core\specification.h" />
+    <ClInclude Include="lib\templates\Windows\winapi_hardware.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
