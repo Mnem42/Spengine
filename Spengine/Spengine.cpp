@@ -2,14 +2,26 @@
 //
 
 #include <iostream>
+#include <Windows.h>
 #include "lib/core/environment.h"
+#include "lib/templates/Windows/winapi_hardware.h"
 
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    spengine::Graphics_templates::Event_types::evt_draw_outline_circle;
-    spengine::Graphics_templates::Event_payloads::Tripayload;
+    HWND window = GetConsoleWindow();
+    auto evth = new spengine_winapi::capability_evthandler(window);
+    spengine::events::Evtquene_tracker tracker = { 
+        new spengine::events::EvtQuene(),
+        new spengine::events::EvtQuene() 
+    };
+
+    spengine::evt_quene_utils::add_evt(
+        tracker.system_quene,
+        static_cast<uint8_t>(spengine::specification::Capabilities_query),
+        static_cast<uint8_t>(spengine::specification::API_Query),
+        (void*)NULL
+    );
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

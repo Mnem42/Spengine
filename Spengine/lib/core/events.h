@@ -44,8 +44,9 @@ namespace spengine {
 				}
 			}
 		}
-		template<typename Contained> void add_evt(spengine::events::EvtQuene* quene, uint8_t evt_type, Contained* item) {
+		template<typename Contained> void add_evt(spengine::events::EvtQuene* quene, uint8_t evt_type, uint8_t listener, Contained* item) {
 			quene->push_back(new Evt{
+				listener,
 				evt_type,
 				(void*)item,
 				NULL,

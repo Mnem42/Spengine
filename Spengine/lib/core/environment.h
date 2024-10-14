@@ -6,8 +6,7 @@
 namespace spengine {
 	namespace Environments {
 		struct Environment {
-			spengine::Events::Evtquene_tracker* evts;
-			spengine::Events::UsedApiSet usedapis;
+			spengine::events::Evtquene_tracker* evts;
 		};
 	}
 }
