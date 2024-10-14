@@ -23,11 +23,19 @@ namespace spengine {
 		};
 	}
 	namespace evt_quene_utils {
-		uint8_t consume_evt(spengine::events::EvtQuene* quene, spengine::events::EvtConsumer cb) {
+		uint8_t consume_evt(
+			spengine::events::EvtQuene* quene, 
+			spengine::events::EvtConsumer cb, 
+			void* retdata) {
 			if (quene->front()->evt_type == NULL) {
 				return 1;
 			}
 			uint8_t retval = cb(quene->front());
+
+			if (retdata != NULL) {
+				retdata = quene->front()->retdata;
+			}
+
 			quene->erase(quene->begin());
 			return retval;
 		}
@@ -44,8 +52,8 @@ namespace spengine {
 				}
 			}
 		}
-		template<typename Contained> void add_evt(spengine::events::EvtQuene* quene, uint8_t evt_type, uint8_t listener, Contained* item) {
-			quene->push_back(new Evt{
+		template<typename Contained> void add_evt(spengine::events::EvtQuene* quene, uint8_t listener, uint8_t evt_type, Contained* item) {
+			quene->push_back(new spengine::events::Evt{
 				listener,
 				evt_type,
 				(void*)item,

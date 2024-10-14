@@ -6,53 +6,32 @@
 
 namespace spengine_winapi {
 
-	bool capability_query(spengine::specification::CapabilityQueryType query_type,HWND hwnd) {
+	bool capability_query_handler(spengine::events::Evt* evt) {
 		using namespace spengine::specification;
 		using namespace spengine::spec_cababilityreq;
 
 		CapabilityQueryRet tmp;
-		switch (query_type) {
-		case API_Query:
-            DWORD dwVersion = 0;
-            DWORD major_ver = 0;
-            DWORD minor_ver = 0;
-            DWORD build_num = 0;
+		switch (static_cast<CapabilityQueryType>(evt->evt_type)) {
+		case API_Query: {
+			OSVERSIONINFOEX ver;
 
-            dwVersion = GetVersion();
+			VerifyVersionInfo(&ver, VER_BUILDNUMBER | VER_MAJORVERSION | VER_MINORVERSION, NULL);
 
-            major_ver = (DWORD)(LOBYTE(LOWORD(dwVersion)));
-            minor_ver = (DWORD)(HIBYTE(LOWORD(dwVersion)));
-
-			if (dwVersion < 0x80000000)
-				build_num = (DWORD)(HIWORD(dwVersion));
+			DWORD build = ver.dwBuildNumber;
+			DWORD minorver = ver.dwMinorVersion;
+			DWORD majorver = ver.dwMajorVersion;
 
 			tmp.id      = "WINAPI";
 			tmp.source  = "";
 			tmp.enabled = TRUE;
-			tmp.version = { major_ver,minor_ver,build_num };
+			tmp.version = { majorver,minorver,build };
 
+			evt->retdata      = (void*)(&tmp);
+			evt->return_ready = true;
 			return false;
+		}
 		default:
 			return true;
 		}
 	}
-
-	class capability_evthandler{
-	private:
-		HWND hwnd=NULL;
-	public:
-		capability_evthandler(HWND hWnd) {
-			hwnd = hWnd;
-		}
-		bool operator () (spengine::events::Evt* evt){
-			if (hwnd != NULL) {
-				evt->retdata=(void*)capability_query(static_cast<spengine::specification::CapabilityQueryType>(evt->evt_type), hwnd);
-				return false;
-			}
-			else {
-				throw new std::invalid_argument("Query invalid");
-				return true;
-			}
-		}
-	};
 }

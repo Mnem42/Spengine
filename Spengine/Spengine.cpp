@@ -10,7 +10,8 @@
 int main()
 {
     HWND window = GetConsoleWindow();
-    auto evth = new spengine_winapi::capability_evthandler(window);
+    LPOSVERSIONINFO info=new OSVERSIONINFO;
+
     spengine::events::Evtquene_tracker tracker = { 
         new spengine::events::EvtQuene(),
         new spengine::events::EvtQuene() 
@@ -21,6 +22,12 @@ int main()
         static_cast<uint8_t>(spengine::specification::Capabilities_query),
         static_cast<uint8_t>(spengine::specification::API_Query),
         (void*)NULL
+    );
+
+    spengine::evt_quene_utils::consume_evt(
+        tracker.system_quene,
+        spengine_winapi::capability_query_handler,
+        (void*)info
     );
 }
 
