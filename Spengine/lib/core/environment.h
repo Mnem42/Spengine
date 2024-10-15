@@ -1,5 +1,6 @@
 #pragma once
 #include "math.h"
+#include "interface.h"
 #include "events.h"
 #include "specification.h"
 

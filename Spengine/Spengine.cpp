@@ -4,18 +4,19 @@
 #include <iostream>
 #include <Windows.h>
 #include "lib/core/environment.h"
-#include "lib/templates/Windows/winapi_hardware.h"
+#include "lib/templates/Windows/winapi.h"
 
 
 int main()
 {
     HWND window = GetConsoleWindow();
-    LPOSVERSIONINFO info=new OSVERSIONINFO;
+    spengine::general_interface::Version version;
 
     spengine::events::Evtquene_tracker tracker = { 
         new spengine::events::EvtQuene(),
         new spengine::events::EvtQuene() 
     };
+
 
     spengine::evt_quene_utils::add_evt(
         tracker.system_quene,
@@ -27,7 +28,7 @@ int main()
     spengine::evt_quene_utils::consume_evt(
         tracker.system_quene,
         spengine_winapi::capability_query_handler,
-        (void*)info
+        (void*)(&version)
     );
 }
 

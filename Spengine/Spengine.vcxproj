@@ -132,8 +132,10 @@
   <ItemGroup>
     <ClInclude Include="lib\core\environment.h" />
     <ClInclude Include="lib\core\events.h" />
+    <ClInclude Include="lib\core\interface.h" />
     <ClInclude Include="lib\core\math.h" />
     <ClInclude Include="lib\core\specification.h" />
+    <ClInclude Include="lib\templates\Windows\winapi.h" />
     <ClInclude Include="lib\templates\Windows\winapi_hardware.h" />
   </ItemGroup>
   <ItemGroup>

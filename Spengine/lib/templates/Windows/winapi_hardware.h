@@ -3,6 +3,7 @@
 #include "../../core/events.h"
 #include "../../core/specification.h"
 #include <Windows.h>
+#include <string>
 
 namespace spengine_winapi {
 
@@ -10,23 +11,23 @@ namespace spengine_winapi {
 		using namespace spengine::specification;
 		using namespace spengine::spec_cababilityreq;
 
-		CapabilityQueryRet tmp;
+		std::string description = "WINAPI wrapper for spengine";
+		std::string source      = "spengine devs";
+
 		switch (static_cast<CapabilityQueryType>(evt->evt_type)) {
 		case API_Query: {
-			OSVERSIONINFOEX ver;
+			auto tmp = static_cast<CapabilityQueryRet*>(evt->retdata);
+			tmp->description = new char[](description.c_str());
+			tmp->source      = new const_cast<char*>(source.c_str());
 
-			VerifyVersionInfo(&ver, VER_BUILDNUMBER | VER_MAJORVERSION | VER_MINORVERSION, NULL);
+			tmp->enabled     = TRUE;
+			tmp->version = { 
+				spengine_winapi::wrapper_ver::major,
+				spengine_winapi::wrapper_ver::minor,
+				spengine_winapi::wrapper_ver::patch,
+				0
+			};
 
-			DWORD build = ver.dwBuildNumber;
-			DWORD minorver = ver.dwMinorVersion;
-			DWORD majorver = ver.dwMajorVersion;
-
-			tmp.id      = "WINAPI";
-			tmp.source  = "";
-			tmp.enabled = TRUE;
-			tmp.version = { majorver,minorver,build };
-
-			evt->retdata      = (void*)(&tmp);
 			evt->return_ready = true;
 			return false;
 		}

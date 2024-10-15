@@ -38,13 +38,6 @@ namespace spengine {
 			API_Query
 		};
 	}
-	namespace general_interface {
-		struct Version {
-			unsigned int major;
-			unsigned int minor;
-			unsigned int buildnum;
-		};
-	}
 	namespace spec_drawer {
 		struct TriPayload {
 			math::coords::DisplayCoord c0;
@@ -73,9 +66,9 @@ namespace spengine {
 	}
 	namespace spec_cababilityreq {
 		struct CapabilityQueryRet {
-			const char* id;
-			const char* source;
-			bool enabled;
+			char* description;
+			char* source;
+			bool enabled      = false;
 			general_interface::Version version;
 		};
 	}

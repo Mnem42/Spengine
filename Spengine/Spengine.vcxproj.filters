@@ -50,6 +50,12 @@
     <ClInclude Include="lib\templates\Windows\winapi_hardware.h">
       <Filter>Header Files\Templates\WINAPI</Filter>
     </ClInclude>
+    <ClInclude Include="lib\templates\Windows\winapi.h">
+      <Filter>Header Files\Templates\WINAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\interface.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\documentation\Event system.md">
