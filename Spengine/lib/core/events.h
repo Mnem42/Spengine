@@ -10,6 +10,7 @@ namespace spengine {
 			uint8_t evt_type = NULL;
 			void* data = NULL;
 			void* retdata = NULL;
+			volatile bool is_valid = false;
 			volatile bool return_ready = false;
 		};
 

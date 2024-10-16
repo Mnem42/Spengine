@@ -69,7 +69,6 @@ namespace spengine {
 			char* description;
 			char* source;
 			bool enabled     = false;
-			bool query_valid = false;
 			general_interface::Version version;
 		};
 	}

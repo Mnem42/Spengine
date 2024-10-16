@@ -12,9 +12,10 @@ An event is stored as an `Evt*`. The `Evt` struct contains the following fields:
 | `evt_type`     | `uint8_t`       | The type of an event. Enum used depends on context.                                               |
 | `data`         | `void*`         | The data to send. The type before casting is defined by the type of function and what it needs.   |
 | `retdata`      | `void*`         | The data to return. The type of data return is defined by the type of function and what it needs. |
+| `is_valid`     | `volatile bool` | If the query was valid, it's set to `true` as soon as possible. If it's true at the same time as `return_ready`, the query is invalid                                                                                                   |
 | `return_ready` | `volatile bool` | Whether the return data is ready to be used. This is important for multithreading.                |
 
-The event consumer must set `return_ready`, even if it's not multithreading.
+The event consumer must set `return_ready`, even if it's not multithreading. 
 
 ## Event listener block arrangement
 
