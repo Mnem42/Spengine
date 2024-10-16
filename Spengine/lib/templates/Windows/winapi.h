@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 
 namespace spengine_winapi {
 	namespace wrapper_ver {
@@ -9,3 +10,4 @@ namespace spengine_winapi {
 }
 
 #include "winapi_hardware.h"
+#include "winapi_windows.h"

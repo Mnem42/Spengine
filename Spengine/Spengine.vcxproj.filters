@@ -28,6 +28,12 @@
     <Filter Include="Documentation\Specification items">
       <UniqueIdentifier>{bd676cf4-cad6-4461-8667-1539aa1fbe97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\General">
+      <UniqueIdentifier>{ce05f719-89a7-4c93-876b-4949c8dfd3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Specification">
+      <UniqueIdentifier>{36c95556-29ed-4e7f-8fb9-e0cf63799481}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spengine.cpp">
@@ -35,26 +41,29 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\core\events.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\core\environment.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\core\math.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\core\specification.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="lib\templates\Windows\winapi_hardware.h">
       <Filter>Header Files\Templates\WINAPI</Filter>
     </ClInclude>
     <ClInclude Include="lib\templates\Windows\winapi.h">
       <Filter>Header Files\Templates\WINAPI</Filter>
     </ClInclude>
+    <ClInclude Include="lib\templates\Windows\winapi_windows.h">
+      <Filter>Header Files\Templates\WINAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\specification.h">
+      <Filter>Header Files\Core\Specification</Filter>
+    </ClInclude>
     <ClInclude Include="lib\core\interface.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Header Files\Core\Specification</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\environment.h">
+      <Filter>Header Files\Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\events.h">
+      <Filter>Header Files\Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\core\math.h">
+      <Filter>Header Files\Core\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

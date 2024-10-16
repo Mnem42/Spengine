@@ -2,7 +2,6 @@
 #include <exception>
 #include "../../core/events.h"
 #include "../../core/specification.h"
-#include <Windows.h>
 #include <string>
 
 namespace spengine_winapi {
@@ -16,9 +15,9 @@ namespace spengine_winapi {
 
 		switch (static_cast<CapabilityQueryType>(evt->evt_type)) {
 		case API_Query: {
-			auto tmp = static_cast<CapabilityQueryRet*>(evt->retdata);
-			tmp->description = new char[](description.c_str());
-			tmp->source      = new const_cast<char*>(source.c_str());
+			auto tmp = new CapabilityQueryRet;
+			tmp->description = const_cast<char*>(description.c_str());
+			tmp->source      = const_cast<char*>(source.c_str());
 
 			tmp->enabled     = TRUE;
 			tmp->version = { 
@@ -28,6 +27,7 @@ namespace spengine_winapi {
 				0
 			};
 
+			evt->retdata = static_cast<void*>(tmp);
 			evt->return_ready = true;
 			return false;
 		}
