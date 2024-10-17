@@ -1,4 +1,7 @@
 #pragma once
+#ifdef WIN32
+#include <Windows.h>
+#endif
 
 namespace spengine {
 	namespace specification {
@@ -77,7 +80,7 @@ namespace spengine {
 			char* description = NULL;
 			char* source      = NULL;
 			bool enabled      = false;
-			general_interface::Version version;
+			spengine::general_interface::Version version;
 		};
 	}
 	namespace spec_windowing {
