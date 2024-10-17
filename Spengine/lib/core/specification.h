@@ -10,6 +10,9 @@ namespace spengine {
 			Drawer_required_B = 0x09,
 			Drawer_optional_A = 0x0A,
 			Drawer_optional_B = 0x0B,
+
+			Window_management = 0x10,
+			Window_callbacks  = 0x11
 		};
 		enum DrawerEvtTypes {
 			//required set A
@@ -30,6 +33,11 @@ namespace spengine {
 
 			//optional set C
 			Invert_colour_area = 0x0B
+		};
+		enum WindowEvtTypes {
+			Window_create  = 0x01,
+			Window_destroy = 0x02,
+			Window_draw    = 0x03
 		};
 		enum CapabilityQueryType {
 			DrawDriver_Query,
@@ -70,6 +78,16 @@ namespace spengine {
 			char* source;
 			bool enabled     = false;
 			general_interface::Version version;
+		};
+	}
+	namespace spec_windowing {
+		struct WindowQueryInput_WINAPI {
+			LPCWSTR name;
+			HINSTANCE hinst;
+			HINSTANCE hprevinst;
+			PWSTR pcmdline;
+			int ncmdshow;
+
 		};
 	}
 }

@@ -20,6 +20,7 @@ namespace spengine {
 
 		struct Evtquene_tracker {
 			EvtQuene* system_quene;
+			EvtQuene* system_cb_quene;
 			EvtQuene* custom_evts;
 		};
 	}
