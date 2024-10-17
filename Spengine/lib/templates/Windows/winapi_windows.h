@@ -108,5 +108,5 @@ namespace spengine_winapi {
                 DispatchMessage(&msg);
             }
         }
-    }
+    };
 }

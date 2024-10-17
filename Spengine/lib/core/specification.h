@@ -74,9 +74,9 @@ namespace spengine {
 	}
 	namespace spec_cababilityreq {
 		struct CapabilityQueryRet {
-			char* description;
-			char* source;
-			bool enabled     = false;
+			char* description = NULL;
+			char* source      = NULL;
+			bool enabled      = false;
 			general_interface::Version version;
 		};
 	}
@@ -87,7 +87,6 @@ namespace spengine {
 			HINSTANCE hprevinst;
 			PWSTR pcmdline;
 			int ncmdshow;
-
 		};
 	}
 }
