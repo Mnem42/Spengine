@@ -14,7 +14,7 @@ namespace spengine {
 			Drawer_optional_A = 0x0A,
 			Drawer_optional_B = 0x0B,
 
-			Window_management = 0x10,
+			Window_manager = 0x10,
 			Window_callbacks  = 0x11
 		};
 		enum DrawerEvtTypes {
@@ -80,16 +80,16 @@ namespace spengine {
 			char* description = NULL;
 			char* source      = NULL;
 			bool enabled      = false;
-			spengine::general_interface::Version version;
+			spengine::general_interface::Version version = { 0,0,0,0 };
 		};
 	}
 	namespace spec_windowing {
 		struct WindowQueryInput_WINAPI {
-			LPCWSTR name;
-			HINSTANCE hinst;
-			HINSTANCE hprevinst;
-			PWSTR pcmdline;
-			int ncmdshow;
+			LPCWSTR name = 0;
+			HINSTANCE hinst = 0;
+			HINSTANCE hprevinst = 0;
+			PWSTR pcmdline = 0;
+			int ncmdshow = 0;
 		};
 	}
 }

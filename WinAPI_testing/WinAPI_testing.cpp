@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "WinAPI_testing.h"
 
+#include "../Spengine/lib/core/environment.h"
+#include "../Spengine/lib/templates/Windows/winapi.h"
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -22,34 +25,33 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    using namespace spengine;
+
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
 
-    // Initialize global strings
-    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_WINAPITESTING, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    spengine::events::EvtQuene quene;
+    spengine_winapi::WindowManager winmanager(&quene);
 
-    // Perform application initialization:
-    if (!InitInstance (hInstance, nCmdShow))
+    quene.add_evt<spec_windowing::WindowQueryInput_WINAPI>(specification::Window_manager, specification::Window_create, new spec_windowing::WindowQueryInput_WINAPI{
+        L"test",
+        hInstance,
+        hPrevInstance,
+        lpCmdLine,
+        nCmdShow
+    });
+
+    winmanager.consume_event(&quene);
+
+    // Run the message loop.
+
+    MSG msg = { };
+    while (GetMessage(&msg, NULL, 0, 0) > 0)
     {
-        return FALSE;
-    }
-
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPITESTING));
-
-    MSG msg;
-
-    // Main message loop:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
     }
 
     return (int) msg.wParam;

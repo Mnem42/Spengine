@@ -11,10 +11,12 @@ namespace spengine_winapi {
             _quene = quene;
         }
 
-        void consume_event(spengine::events::Evt* evt) {
-            switch (evt->listener) {
-            case spengine::specification::Window_create:
-                generate_desktop_window_blank(evt);
+        void consume_event(spengine::events::EvtQuene* quene) {
+            if (quene->front()->listener == spengine::specification::Window_manager) {
+                switch (quene->front()->evt_type) {
+                case spengine::specification::Window_create:
+                    generate_desktop_window_blank(quene->front());
+                }
             }
         }
 
@@ -24,7 +26,7 @@ namespace spengine_winapi {
 
             switch (uMsg)
             {
-            case WM_NCCREATE:
+            case WM_NCCREATE: {
                 _this = static_cast<WindowManager*>(reinterpret_cast<CREATESTRUCT*>(lParam)->lpCreateParams);
 
                 SetLastError(0);
@@ -33,7 +35,9 @@ namespace spengine_winapi {
                     if (GetLastError() != 0)
                         return FALSE;
                 }
-            case WM_DESTROY:
+                break;
+            }
+            case WM_DESTROY: {
                 _this = reinterpret_cast<WindowManager*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
                 if (_this) {
                     spengine::evt_quene_utils::add_evt(
@@ -45,7 +49,7 @@ namespace spengine_winapi {
                 }
                 PostQuitMessage(0);
                 return 0;
-
+            }
             case WM_PAINT:
             {
                 PAINTSTRUCT ps;
@@ -98,15 +102,6 @@ namespace spengine_winapi {
             }
 
             ShowWindow(hwnd, data->ncmdshow);
-
-            // Run the message loop.
-
-            MSG msg = { };
-            while (GetMessage(&msg, NULL, 0, 0) > 0)
-            {
-                TranslateMessage(&msg);
-                DispatchMessage(&msg);
-            }
         }
     };
 }
