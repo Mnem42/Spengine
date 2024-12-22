@@ -1,4 +1,6 @@
 #pragma once
+#include "math.h"
+#include "interface.h"
 
 namespace spengine {
 	namespace specification {
@@ -16,9 +18,10 @@ namespace spengine {
 		};
 		enum DrawerEvtTypes {
 			//required set A
-			Draw_bitmap = 0x01,
-			Draw_rect   = 0x02,
-			Draw_tri    = 0x03,
+			Clear_screen = 0x01,
+			Draw_bitmap  = 0x02,
+			Draw_rect    = 0x03,
+			Draw_tri     = 0x04,
 
 			//required set B
 			Draw_shaded_rect = 0x08,
@@ -48,28 +51,34 @@ namespace spengine {
 	}
 	namespace spec_drawer {
 		struct TriPayload {
-			math::coords::DisplayCoord c0;
-			math::coords::DisplayCoord c1;
-			math::coords::DisplayCoord c2;
+			uint16_t x1;
+			uint16_t y1;
+			uint16_t x2;
+			uint16_t y2;
+			uint16_t x3;
+			uint16_t y3;
 		};
 		struct RectPayload {
-			math::coords::DisplayCoord x;
-			math::coords::DisplayCoord y;
-			math::coords::DisplayCoord w;
-			math::coords::DisplayCoord h;
+			uint16_t x1;
+			uint16_t y1;
+			uint16_t x2;
+			uint16_t y2;
 		};
 		struct ColTriPayload {
-			math::coords::DisplayCoord c0;
-			math::coords::DisplayCoord c1;
-			math::coords::DisplayCoord c2;
-			math::colour::RGB24 colour;
+			uint16_t x1;
+			uint16_t x2;
+			uint16_t x3;
+			uint16_t y1;
+			uint16_t y2;
+			uint16_t y3;
+			spengine::math::colour::RGB24 colour;
 		};
 		struct ColRectPayload {
-			math::coords::DisplayCoord x;
-			math::coords::DisplayCoord y;
-			math::coords::DisplayCoord w;
-			math::coords::DisplayCoord h;
-			math::colour::RGB24 colour;
+			uint16_t x1;
+			uint16_t y1;
+			uint16_t x2;
+			uint16_t y2;
+			spengine::math::colour::RGB24 colour;
 		};
 	}
 	namespace spec_cababilityreq {

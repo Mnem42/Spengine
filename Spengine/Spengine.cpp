@@ -18,7 +18,7 @@ int main()
     };
 
 
-    spengine::evt_quene_utils::add_evt(
+    spengine::evt_quene_utils::add_evt<void>(
         tracker.system_quene,
         static_cast<uint8_t>(spengine::specification::Capabilities_query),
         static_cast<uint8_t>(spengine::specification::API_Query),
