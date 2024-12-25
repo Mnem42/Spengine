@@ -1,17 +1,23 @@
 #ifndef UNICODE
 #define UNICODE
 #endif 
+//#undef WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
 #include "../Spengine/lib/core/environment.h"
 #include "../Spengine/lib/templates/Windows/winapi.h"
+#include "gdiplus.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 spengine_winapi::WindowManager* manager;
 spengine::events::EvtQuene* quene;
 
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
+int WINAPI wWinMain(
+    _In_ HINSTANCE hInstance,
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR lpCmdLine,
+    _In_ int nShowCmd)
 {
     // Register the window class.
     const wchar_t CLASS_NAME[] = L"Sample Window Class";
@@ -23,6 +29,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.lpszClassName = CLASS_NAME;
 
     RegisterClass(&wc);
+
+    Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+    ULONG_PTR           gdiplusToken;
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
     // Create the window.
 
@@ -49,7 +59,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
         return 0;
     }
 
-    ShowWindow(hwnd, nCmdShow);
+    ShowWindow(hwnd, nShowCmd);
 
     // Run the message loop.
 
@@ -59,6 +69,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+
+    Gdiplus::GdiplusShutdown(gdiplusToken);
 
     return 0;
 }
@@ -84,7 +96,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             NULL
         });
 
-        //draw
+        //Draw
         quene->push_back(new spengine::events::Evt{
             spengine::specification::Drawer_required_A,
             spengine::specification::Draw_rect,
@@ -98,6 +110,17 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             spengine::specification::Draw_rect,
             new spengine::spec_drawer::RectPayload{
                 35,35,85,85
+            },
+            NULL
+        });
+
+        quene->push_back(new spengine::events::Evt{
+            spengine::specification::Drawer_required_A,
+            spengine::specification::Draw_tri,
+            new spengine::spec_drawer::TriPayload{
+                35,45,
+                70,5,
+                70,45
             },
             NULL
         });

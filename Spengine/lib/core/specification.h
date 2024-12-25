@@ -19,13 +19,12 @@ namespace spengine {
 		enum DrawerEvtTypes {
 			//required set A
 			Clear_screen = 0x01,
-			Draw_bitmap  = 0x02,
-			Draw_rect    = 0x03,
-			Draw_tri     = 0x04,
+			Draw_bitmap = 0x02,
+			Draw_rect = 0x03,
+			Draw_tri = 0x04,
 
 			//required set B
 			Draw_shaded_rect = 0x08,
-			Draw_shaded_tri  = 0x09,
 			
 			//optional set A
 			Draw_circle        = 0x0A,
