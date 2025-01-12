@@ -20,14 +20,12 @@ namespace spengine {
 
 		struct Evtquene_tracker {
 			EvtQuene* system_quene;
+			EvtQuene* system_cb_quene;
 			EvtQuene* custom_evts;
 		};
 	}
 	namespace evt_quene_utils {
-		uint8_t consume_evt(
-			spengine::events::EvtQuene* quene, 
-			spengine::events::EvtConsumer cb, 
-			void* retdata) {
+		uint8_t consume_evt(spengine::events::EvtQuene* quene, spengine::events::EvtConsumer cb, void* retdata) {
 			if (quene->front()->evt_type == NULL) {
 				return 1;
 			}
@@ -59,6 +57,7 @@ namespace spengine {
 				evt_type,
 				(void*)item,
 				NULL,
+				false,
 				false
 			});
 			return;
