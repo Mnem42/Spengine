@@ -3,6 +3,12 @@
 ## Event quenes
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+
 classDiagram
 	class EVT["Event"]
 		EVT: #volatile State write_lock
@@ -17,9 +23,10 @@ classDiagram
 		EQ: +add_event()
 
     class SEQ["SimpleEventQuene"]
-		SEQ: +filter_events() : std::vector
+		SEQ: +filter_events(type) vector~Event~
 
 	class DEQ["DelegatingEventQuene"]
+		SEQ: +DelegatingEventQuene(vector~idk~ table)
 
 	EQ ..|> SEQ
 	EQ ..|> DEQ
