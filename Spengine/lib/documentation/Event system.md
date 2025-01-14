@@ -5,18 +5,24 @@
 ```mermaid
 classDiagram
 	class EVT["Event"]
+		EVT: #volatile State write_lock
+		EVT: #any contained
 
-	class EQ["EventQuene"]
-		EQ:#vector~EVT~ items
-		EQ:+add_event()
+		EVT: +Event~T~(T in) Event
+		EVT: +Event(void* in) Event
+
+	class EQ["EventQuene"] 
+		<<Abstract>> EQ
+		EQ: #vector~Event~ items
+		EQ: +add_event()
 
     class SEQ["SimpleEventQuene"]
-		
+		SEQ: +filter_events() : std::vector
 
 	class DEQ["DelegatingEventQuene"]
 
-	EQ..|>SEQ
-	EQ..|>DEQ
+	EQ ..|> SEQ
+	EQ ..|> DEQ
 ```
 
 ## Event handlers
