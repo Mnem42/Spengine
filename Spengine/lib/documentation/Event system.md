@@ -19,17 +19,24 @@ classDiagram
 
 	class EQ["EventQuene"] 
 		<<Abstract>> EQ
-		EQ: #vector~Event~ items
+		EQ: #vector~Event~ itemsS
 		EQ: +add_event()
 
+	class EQT["EventQuene"] 
+		<<Interface>> EQT
+		EQT: #vector~Event~ items
+		EQT: +add_event()
+		note for EQT "Technically a concept, so this can only work for C++ 20 and above"
     class SEQ["SimpleEventQuene"]
 		SEQ: +filter_events(type) vector~Event~
 
 	class DEQ["DelegatingEventQuene"]
-		SEQ: +DelegatingEventQuene(vector~idk~ table)
+		DEQ: +DelegatingEventQuene(vector~idk~ table)
 
 	EQ ..|> SEQ
 	EQ ..|> DEQ
+	EQT ..|> SEQ
+	EQT ..|> DEQ
 ```
 
 ## Event handlers
