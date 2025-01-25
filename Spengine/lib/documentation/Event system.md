@@ -49,13 +49,12 @@ acts as a container for events.
 ### Calling
 
 There are multiple different ways to call an event. The applicability of each
-depends on the type of event and how it's triggered. For example, calling convention
-B makes more sense for things like IO input events, because it isn't a problem if 
-any events are not handled. 
+depends on the type of event and how it's triggered. For example, calling 
+convention B makes more sense for things like IO input events, because it isn't 
+a problem if any events are not handled. 
 
-However, calling convention A makes more sense for events 
-that have to be responded to, or for long running background processes like downloading
-a file.
+However, calling convention A makes more sense for events that have to be responded 
+to, or for long running background processes like downloading a file.
 
 #### Calling convention A
 
