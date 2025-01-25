@@ -11,21 +11,20 @@
 
 classDiagram
 	class EVT["Event"]
-		EVT: #volatile State write_lock
-		EVT: #any contained
+		EVT: #variant contained
 
-		EVT: +Event~T~(T in) Event
+		EVT: +Event~T~(T in)  Event
 		EVT: +Event(void* in) Event
 
 	class EQ["EventQuene"] 
 		<<Abstract>> EQ
-		EQ: #vector~Event~ itemsS
-		EQ: +add_event()
+		EQ: #vector~unique_lock~mutex~~ items
+		EQ: +add_event(Event)
 
 	class EQT["EventQuene"] 
 		<<Interface>> EQT
-		EQT: #vector~Event~ items
-		EQT: +add_event()
+		EQT: #vector~unique_lock~mutex~~ items
+		EQT: +add_event(Event)
 		note for EQT "Technically a concept, so this can only work for C++ 20 and above"
     class SEQ["SimpleEventQuene"]
 		SEQ: +filter_events(type) vector~Event~
